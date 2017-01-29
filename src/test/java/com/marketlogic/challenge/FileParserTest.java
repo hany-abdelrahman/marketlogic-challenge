@@ -17,7 +17,7 @@ import org.junit.Test;
  */
 public class FileParserTest {
     @Test
-    public void scheduleWithNullStartTimeShouldThrowException() {
+    public void testParseOfficeHour() {
         LocalTime result = LocalTime.parse("0930", DateTimeFormatter.ofPattern(FileParser.OFFICE_HOUR_FORMAT));
         LocalTime expected = LocalTime.of(9, 30);
         Assert.assertEquals(expected, result);

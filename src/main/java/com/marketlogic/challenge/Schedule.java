@@ -33,21 +33,22 @@ public class Schedule {
     }
     
     /**
-     * Add a list of bookings to the calendar. Bookings are processed in order of their submission time.
+     * Add a list of bookings to the calendar. Bookings are processed in order
+     * of their submission time.
      * 
-     * @param bookings The list of bookings to be added.
+     * @param bookings
+     *            The list of bookings to be added.
      */
     public void addBookings(List<Booking> bookings) {
         Validate.notNull(bookings, "bookings cannot be null");
         Validate.noNullElements(bookings, "bookings cannot contain a null element");
         
         Collections.sort(bookings, new Comparator<Booking>() {
-                @Override
-                public int compare(Booking o1, Booking o2) {
-                    return o1.getSubmissionTime().compareTo(o2.getSubmissionTime());
-                }
+            @Override
+            public int compare(Booking o1, Booking o2) {
+                return o1.getSubmissionTime().compareTo(o2.getSubmissionTime());
             }
-        );
+        });
         
         for (Booking booking : bookings) {
             if (!isBookingInWorkingHours(booking)) {
@@ -63,8 +64,10 @@ public class Schedule {
     /**
      * Checks if the meeting is within the working hours of the company.
      * 
-     * @param booking the booking to be checked.
-     * @return <code>True</code> if the meeting is between the startTime and endTime
+     * @param booking
+     *            the booking to be checked.
+     * @return <code>True</code> if the meeting is between the startTime and
+     *         endTime
      */
     boolean isBookingInWorkingHours(Booking booking) {
         LocalDateTime currentDayStart = booking.getStartTime().toLocalDate().atTime(startTime);
@@ -78,15 +81,19 @@ public class Schedule {
             currentDayEnd = currentDayEnd.plusDays(1);
         }
         
-        return booking.getStartTime().compareTo(currentDayStart) >=0 && booking.getEndTime().compareTo(currentDayEnd) <= 0;
+        return booking.getStartTime().compareTo(currentDayStart) >= 0
+                && booking.getEndTime().compareTo(currentDayEnd) <= 0;
     }
     
     /**
      * Checks if a given booking does not overlap with a list of bookings.
      * 
-     * @param bookings the list of existing booking
-     * @param booking the new booking, for which the check is done 
-     * @return <code>True</code> if the booking does not overlap with any of the existing booking. Otherwise <code>False</code>
+     * @param bookings
+     *            the list of existing booking
+     * @param booking
+     *            the new booking, for which the check is done
+     * @return <code>True</code> if the booking does not overlap with any of the
+     *         existing booking. Otherwise <code>False</code>
      */
     boolean isBookingFeasible(List<Booking> bookings, Booking booking) {
         for (Booking b : bookings) {
@@ -98,10 +105,12 @@ public class Schedule {
     }
     
     /**
-     * Gets the calendar containing the schedules bookings as a read-only {@link SortedMap} where keys represent the date of the meeting 
-     * and the values are the list of bookings on that day. The values are guaranteed to be sorted by start time.
+     * Gets the calendar containing the schedules bookings as a read-only
+     * {@link SortedMap} where keys represent the date of the meeting and the
+     * values are the list of bookings on that day. The values are guaranteed to
+     * be sorted by start time.
      * 
-     * @return The calendar containing the scheduled bookings. 
+     * @return The calendar containing the scheduled bookings.
      */
     public SortedMap<LocalDate, List<Booking>> getCalendar() {
         SortedMap<LocalDate, List<Booking>> calendarMap = new TreeMap<>();
@@ -138,7 +147,8 @@ public class Schedule {
                 sb.append(" ");
                 String endTimeFormat = MEETING_OUTPUT_TIME_FORMAT;
                 
-                // If the meeting ends on the next day, print the end time as full date
+                // If the meeting ends on the next day, print the end time as
+                // full date
                 if (booking.getEndTime().toLocalTime().compareTo(booking.getStartTime().toLocalTime()) <= 0) {
                     endTimeFormat = MEETING_OUTPUT_FULL_FORMAT;
                 }

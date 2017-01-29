@@ -15,7 +15,7 @@ public class FileParser {
     static final String MEETING_TIME_FORMAT = "yyyy-MM-dd HH:mm";
     
     /**
-     * Creates an {@link Optional<Schedule>} object by reading input from a text
+     * Creates an Optional<{@link Schedule}> object by reading input from a text
      * file. If the input file is not present or incorrectly formatted, the
      * returned {@link Optional} is empty.
      * 
