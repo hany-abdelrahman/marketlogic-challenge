@@ -1,12 +1,7 @@
-1 - The office hours are represented in 24 hours format. Example 0930 1730. It is possible for the closing
-time to be lexicographically smaller than the opening time. A valid example is 1730 0400. To represent a 
-business which is open for 24 hours, simply use an opening time equal to closing time such as 0500 0500. 
+1 - The office hours are represented in 24 hours format. Example 0930 1730. It is possible for the closing time to be lexicographically smaller than the opening time. A valid example is 1730 0400. To represent a  business which is open for 24 hours, simply use an opening time equal to closing time such as 0500 0500. 
 
-2 - The duration of meeting can accept a decimal value which represents the number of mintues. For example,
-6.15 represents a meeting of 6 hours and 15 mintues. 
+2 - The duration of meeting can accept a decimal value which represents the number of mintues. For example, 6.15 represents a meeting of 6 hours and 15 mintues. 
 
-3 - In case a meeting lasts after midnight, the end time of the meeting will contain the full date formatted as 
-yyyy-MM-dd HH:mm
+3 - In case a meeting lasts after midnight, the end time of the meeting will contain the full date formatted as  yyyy-MM-dd HH:mm
 
-4 - To build the project, simply run mvn package. The output jar can be executed with an example input file as 
-a command line argument
+4 - To build the project, simply run mvn package. The output jar can be executed with an example input file as a command line argument
